@@ -1,0 +1,3 @@
+[submodule "formulas/suse-base-profile"]
+	path = formulas/suse-base-profile
+	url = https://git.nordisch.org/darix/suse-base-profile.git
