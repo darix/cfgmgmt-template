@@ -1,0 +1,5 @@
+#!/bin/bash
+salt_dir="/srv/cfgmgmt/"
+chmod -R u=rwX,g=rX,o= "${salt_dir}"
+chown -R root:salt "${salt_dir}"
+chown -R salt:salt "${salt_dir}/pki/"
