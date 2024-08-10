@@ -22,6 +22,7 @@
 
 base:
    '*':
+      - profile-base
       - common
       {%- if 'salt_cluster' in minion_data %}
       - salt_cluster.{{ minion_data.salt_cluster }}
