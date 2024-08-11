@@ -1,7 +1,7 @@
   Configuration Management Setup Template
 ------------------------------------------
 
-- `git clone --recursive https://git.nordisch.org/darix/cfgmgmt-template.git cfgmgmt`
+- `git clone --recursive https://git.nordisch.org/darix/cfgmgmt-template.git /srv/cfgmgmt`
 - `ln -s /srv/cfgmgmt/config/salt_master.conf /etc/salt/master.d`
 
 If you only want to listen on some internal interface
