@@ -1,5 +1,11 @@
 #!/bin/bash
+
+PRIMARY_USER="${1:-root}"
 salt_dir="/srv/cfgmgmt/"
-chmod -R u=rwX,g=rX,o= "${salt_dir}"
-chown -R root:salt "${salt_dir}"
-chown -R salt:salt "${salt_dir}/pki/"
+chmod         -R u=rwX,g=rX,o=         "${salt_dir}"
+chown         -R ${PRIMARY_USER}:salt  "${salt_dir}"
+chown         -R salt:salt             "${salt_dir}/pki/"
+setfacl    -m -R u:${PRIMARY_USER}:rwX "${salt_dir}"
+setfacl    -m -R u:salt:rX             "${salt_dir}"
+setfacl -d -m -R u:${PRIMARY_USER}:rwX "${salt_dir}"
+setfacl -d -m -R u:salt:rX             "${salt_dir}"
