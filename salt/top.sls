@@ -1,4 +1,4 @@
-{% set roles = salt['pillar.get']('role', []) %}
+{% set roles = salt['pillar.get']('roles', []) %}
 
 base:
   '*':
