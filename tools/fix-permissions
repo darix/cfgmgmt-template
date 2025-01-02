@@ -3,7 +3,7 @@
 PRIMARY_USER="${1:-root}"
 salt_dir="/srv/cfgmgmt/"
 chmod    -R       u=rwX,g=rX,o=         "${salt_dir}"
-chown    -R       ${PRIMARY_USER}:salt  "${salt_dir}"
+chown    -R       ${PRIMARY_USER}:      "${salt_dir}"
 chown    -R       salt:salt             "${salt_dir}/pki/"
 setfacl  -R    -m u:${PRIMARY_USER}:rwX "${salt_dir}"
 setfacl  -R    -m u:salt:rX             "${salt_dir}"
