@@ -3,9 +3,12 @@
 PRIMARY_USER="${1:-root}"
 salt_dir="/srv/cfgmgmt/"
 chmod    -R       u=rwX,g=rX,o=         "${salt_dir}"
-chown    -R       ${PRIMARY_USER}:      "${salt_dir}"
+chown    -R       "${PRIMARY_USER}:"    "${salt_dir}"
 chown    -R       salt:salt             "${salt_dir}/pki/"
-setfacl  -R    -m u:${PRIMARY_USER}:rwX "${salt_dir}"
-setfacl  -R    -m u:salt:rX             "${salt_dir}"
-setfacl  -R -d -m u:${PRIMARY_USER}:rwX "${salt_dir}"
-setfacl  -R -d -m u:salt:rX             "${salt_dir}"
+# setfacl does not support uppercase X (conditional execute); split by type
+find "${salt_dir}" \( -type d -o -perm /u+x \) -print0 \
+    | xargs -0 setfacl -m "u:${PRIMARY_USER}:rwx,u:salt:rx"
+find "${salt_dir}" -type f ! -perm /u+x -print0 \
+    | xargs -0 setfacl -m "u:${PRIMARY_USER}:rw,u:salt:r"
+find "${salt_dir}" -type d -print0 \
+    | xargs -0 setfacl -d -m "u:${PRIMARY_USER}:rwx,u:salt:rx"
