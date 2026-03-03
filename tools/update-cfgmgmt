@@ -1,0 +1,20 @@
+#!/bin/bash
+
+set -euo pipefail
+
+PINNED_SUBMODULE="formulas/suse-base-profile"
+
+git pull --rebase
+
+# Update pinned submodule to the version recorded in the superproject
+git submodule update --init "${PINNED_SUBMODULE}"
+
+# Update all other submodules to latest upstream and stage any new commits
+git submodule foreach --quiet 'echo "$displaypath"' | while IFS= read -r submodule; do
+    if [ "$submodule" = "${PINNED_SUBMODULE}" ]; then
+        continue
+    fi
+    echo "Updating $submodule to latest"
+    git submodule update --remote --init "$submodule"
+    git add "$submodule"
+done
