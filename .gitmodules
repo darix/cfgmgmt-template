@@ -1,4 +1,4 @@
 [submodule "formulas/suse-base-profile"]
 	path = formulas/suse-base-profile
-	url = https://github.com/darix/suse-base-profile.git
+	url = https://codeberg.org/salted-geeko/suse-base-profile.git
 	branch = stable
