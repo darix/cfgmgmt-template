@@ -96,7 +96,7 @@ You can remove minions from the salt-master with
 
 `salt-key --delete=machinename.domain`
 
-There are also short version of the `--accept` ( `-a` ) and `--delete` (`-d`), but be careful, if you accidently upper case the short form your might accept more entries than expected, as e.g. `-D` is the short version of `--delete-all` and `-A` is `--accept-all`. Ask me how I know. :)
+There are also short version of the `--accept` ( `-a` ) and `--delete` (`-d`), but be careful, if you accidentally upper case the short form your might accept more entries than expected, as e.g. `-D` is the short version of `--delete-all` and `-A` is `--accept-all`. Ask me how I know. :)
 
 
 Now you would think "oh i can deploy the basic settings". We are close but not quite ready for that.
@@ -104,7 +104,7 @@ Now you would think "oh i can deploy the basic settings". We are close but not q
 First we need create your minion pillar file. For this we replace all the dots with underscore.
 
 ```
-touch /srv/cfgmgmt/pillar/minions/machhinename_domain.sls
+touch /srv/cfgmgmt/pillar/minions/machinename_domain.sls
 ```
 
 ## Our first role - What is a role anyway?
@@ -114,7 +114,7 @@ We treat our salt configuration like bricks (we sometimes refer to them as profi
 So if we want `machinename.domain` to handle forgejo for us.
 
 ```
-echo -e "roles:\n  - forgejo" >> /srv/cfgmgmt/pillar/minions/machhinename_domain.sls
+echo -e "roles:\n  - forgejo" >> /srv/cfgmgmt/pillar/minions/machinename_domain.sls
 ```
 
 ```
